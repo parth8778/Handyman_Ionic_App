@@ -1,0 +1,44 @@
+ion-header {
+    ion-toolbar {
+        --background: var(--ion-color-base);
+        color: var(--ion-color-white);
+        ion-title {
+            font-family: 'roboto-regular';
+        }
+    }
+}
+
+ion-content {
+    ion-list {
+        ion-item {
+            --inner-padding-top: 8px;
+            --inner-padding-bottom: 8px;
+            ion-avatar {
+                height: 70px;
+                width: 70px;
+            }
+            ion-label {
+                .provider-name {
+                    font-size: 16px;
+                    margin-bottom: 5px;
+                    font-family: 'roboto-bold';
+                    .occupation {
+                        font-size: 14px;
+                        color: var(--ion-color-gray);
+                        font-family: 'roboto-regular';
+                    }
+                }
+                .chat-text {
+                    font-size: 12px;
+                    color: var(--ion-color-gray);
+                    font-family: 'roboto-regular';
+                }
+            }
+            .date {
+                font-size: 12px;
+                color: var(--ion-color-gray);
+                font-family: 'roboto-regular';
+            }
+        }
+    }
+}

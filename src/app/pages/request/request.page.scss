@@ -1,0 +1,80 @@
+ion-header {
+    ion-toolbar {
+        --background: var(--ion-color-base);
+        color: var(--ion-color-white);
+        &:last-child {
+            --min-height: auto;
+        }
+        ion-title {
+            font-family: 'roboto-regular';
+        }
+        .segment {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            .segment-button {
+                h2 {
+                    font-size: 16px;
+                    text-align: center;
+                    font-family: 'roboto-regular';
+                    &.active {
+                        border-bottom: 4px solid;
+                        padding-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+ion-content {
+    ion-list {
+        ion-item {
+            --inner-padding-top: 10px;
+            --inner-padding-bottom: 10px;
+            ion-avatar {
+                height: 70px;
+                width: 70px;
+            }
+            ion-label {
+                .username {
+                    font-size: 18px;
+                    margin-bottom: 5px;
+                    font-family: 'roboto-bold';
+                    .occupation {
+                        font-size: 14px;
+                        font-family: 'roboto-regular';
+                        color: var(--ion-color-gray);
+                    }
+                }
+                .hourly-rate {
+                    font-size: 14px;
+                    font-family: 'roboto-regular';
+                    color: var(--ion-color-gray);
+                }
+            }
+            .status {
+                font-size: 12px;
+                margin-bottom: 5px;
+                font-family: 'roboto-bold';
+                &.pending {
+                    color: var(--ion-color-gray);
+                }
+                &.approved {
+                    color: green;
+                }
+                &.rejected {
+                    color: red;
+                }
+                &.in-process {
+                    color: var(--ion-color-base);
+                }
+            }
+            .booking-date {
+                font-size: 9px;
+                font-family: 'roboto-regular';
+                color: var(--ion-color-gray);
+            }
+        }
+    }
+}

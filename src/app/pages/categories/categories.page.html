@@ -1,0 +1,36 @@
+  <ion-content>
+    <div class="top-banner">
+      <div class="background">
+        <div class="overlay">
+          <div class="location location-dropdown">
+            <div class="flex-col"> 
+              <ion-icon class="location-icon" name="location-outline" slot="start"></ion-icon>
+            </div>
+            <div class="flex-col">
+              <h3 class="location-title">Location For Service</h3>
+              <h2 class="location-text">Mumbai, Bandra <ion-icon name="chevron-down-outline"></ion-icon></h2>
+            </div>
+          </div>
+
+          <h2 class="help-title">
+            How Can We<br>
+            Help You Today?
+          </h2>
+        </div>
+      </div>
+    </div> 
+
+    <div class="padding">
+      <ion-searchbar></ion-searchbar>
+
+      <div class="categories">
+        <ion-card (click)="viewCategory(category)" *ngFor="let category of categories"> 
+          <img class="cat-icon" [src]="category?.categoryIcon" />
+          <h2 class="cat-title">
+            {{category?.categoryName}}
+          </h2>
+        </ion-card>
+      </div>
+    </div>
+
+  </ion-content>

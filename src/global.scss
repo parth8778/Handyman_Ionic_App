@@ -1,0 +1,235 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+// fonts
+@import "./theme/fonts.scss";
+
+* {
+  font-size: 'roboto-regular';
+}
+
+.form-container {
+  ion-label {
+      font-family: 'roboto-regular' !important;
+      color: var(--ion-color-gray) !important;
+  }
+  
+  ion-input {
+      font-family: 'roboto-regular';
+  }
+
+  ion-icon {
+    color: var(--ion-color-base) !important;
+  }
+}
+
+.banner-container {
+  background: var(--ion-color-base);
+  height: 30%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  .logo { 
+      height: auto;
+      width: 35%;
+  }
+  .title {
+      font-size: 30px;
+      color: white;
+      font-family: 'roboto-bold';
+      text-transform: uppercase;
+      span {
+          font-family: 'roboto-thin';
+      }
+  }
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--ion-color-gray);
+    font-size: 16px;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--ion-color-gray);
+  }
+  
+  .separator:not(:empty)::before {
+    margin-right: .25em;
+  }
+  
+  .separator:not(:empty)::after {
+    margin-left: .25em;
+  }
+  
+
+  
+.form-container {
+
+    ion-item {
+        --highlight-color-focused: none;
+      }
+
+    ion-button {
+        height: 50px;
+        margin-top: 24px;
+        --background: var(--ion-color-base);
+        --box-shadow: none;
+        font-family:var(--ion-base-font);
+        text-transform: capitalize;
+        font-size: 18px;
+    }
+} 
+
+
+
+// timeline
+
+
+
+.timeline {
+  max-width: 540px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 34px 30px;
+  background-color: #fff;
+  border-radius: 18px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.timeline__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  border: 2px solid #f0f0f8;
+  padding: 34px 70px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.timeline__header::after {
+  content: "";
+  width: 100%;
+  height: 70px;
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+  z-index: 2;
+  background-color: #f0f0f8;
+}
+
+.timeline__header span {
+  margin-bottom: 10px;
+  text-align: center;
+  color: gray;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'roboto-regular';
+}
+
+.timeline__header h1 {
+  margin-bottom: 100px;
+  font-size: 20px;
+  color: #262245;
+  text-align: center;
+  font-family: 'roboto-regular';
+}
+
+.timeline__header .process {
+  height: 8px;
+  background-color: #fff;
+  border-radius: 3px;
+  z-index: 4;
+}
+
+.timeline__header .process .xd {
+  width: 50%;
+  border-radius: 3px;
+  height: 8px;
+  background-color: #621fcf;
+}
+
+.line {
+  padding: 9px 38px;
+  position: relative;
+}
+
+.line::before {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  left: 38px;
+  background-color: #621fcf;
+  content: "";
+}
+
+.line .content {
+  position: relative;
+  padding-left: 30px;
+}
+
+.line .content + .content {
+  margin-top: 40px;
+}
+
+.line .content h1 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-top: 15px;
+  font-family: 'roboto-bold';
+}
+
+.line .content p {
+  font-size: 14px;
+}
+
+.line .content::before {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #621fcf;
+  content: "";
+  left: -9px;
+  border-radius: 50%;
+}
+/*# sourceMappingURL=main.css.map */

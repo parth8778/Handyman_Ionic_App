@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Change Language
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+
+  <ion-list mode="ios">
+    <ion-item (click)="selectedLan = lan" *ngFor="let lan of languages" lines="none">
+      <ion-label>{{lan}}</ion-label>
+      <ion-icon *ngIf="selectedLan === lan" name="earth"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

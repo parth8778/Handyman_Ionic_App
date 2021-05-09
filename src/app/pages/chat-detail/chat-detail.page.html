@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <div class="provider-person-detail">
+      <img class="provider-image" src="../../../assets/imgs/profile2.png">
+      <h2 (click)="util.navigateByURL('request', 'forward')" class="provider-name">Aliza Smith <span class="occupation">| Plumber</span></h2>
+    </div>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar> 
+</ion-header>  
+
+<ion-content class="ion-padding">
+
+  <div class="right-chat">
+    <h2> Hey Aliz!! </h2>
+    <p>10:00 pm</p>
+  </div>
+
+  <div class="left-chat"> 
+    <h2> Hey Aliz!! </h2>
+    <p>10:00 pm</p>
+  </div>
+
+  <div class="right-chat">
+    <h2> Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi reiciendis tempora perspiciatis inventore odit facilis excepturi ipsam est harum ab deleniti labore, culpa optio iure consequuntur ipsum quisquam sunt rerum. </h2>
+    <p>10:00 pm</p>
+  </div>
+
+  <div class="left-chat"> 
+    <h2> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores fugiat excepturi ipsum sequi adipisci commodi, ab soluta fugit a itaque provident omnis error perferendis, fuga ipsa asperiores explicabo quo. Culpa. </h2>
+    <p>10:00 pm</p>
+  </div>
+
+  <div class="left-chat"> 
+    <h2> Hey Aliz!! </h2>
+    <p>10:00 pm</p>
+  </div>
+
+</ion-content>
+ 
+<ion-footer>
+  
+  <ion-input placeholder="type your message here">
+    <ion-icon name="mic"></ion-icon>
+  </ion-input>
+  
+  <ion-button fill="clear">
+    <ion-icon name="send"></ion-icon>  
+  </ion-button>
+  
+</ion-footer>

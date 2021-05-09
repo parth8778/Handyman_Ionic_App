@@ -1,0 +1,88 @@
+.location {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    .flex-col {
+        .location-icon {
+            font-size: 22px;
+            color: white;
+            margin: 0px 11px 0 0;
+        }
+        .location-title {
+            font-size: 12px;
+            color: white;
+            font-family: 'roboto-regular';
+        }
+        .location-text {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            margin-top: 4px;
+            color: white;
+            font-family: 'roboto-medium';
+        }
+        ion-icon {
+            margin: 0 10px;
+        }
+        ion-select {
+            padding: 0;
+            .select-icon-inner {
+                display: none !important;
+            }
+        }
+    }
+}
+.background { 
+    height: 200px;
+    background-image: url('../../../assets/imgs/header-bg.png');
+    background-size: 100% 100%;
+    .overlay {
+        padding: 10px;
+        height: 100%;
+        .help-title {
+            color: white;
+            font-family: 'roboto-bold';
+            margin-top: 45px;
+            padding-left: 16px;
+        }
+    }
+}
+
+ion-searchbar {
+    margin-top: -41px;
+    margin-bottom: 18px;
+    --box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 10%), 0px 1px 3px 0px rgb(0 0 0 / 8%);
+    --border-radius: 6px;
+}
+
+.padding {
+    padding: 10px;
+}
+
+.categories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    ion-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 31%;
+        padding: 10px;
+        margin: 1px;        
+        box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 10%), 0px 1px 3px 0px rgb(0 0 0 / 8%);
+        .cat-icon {
+            height: 25px;
+            width: 25px;
+            margin-top: 8px;
+        }
+        .cat-title {
+            margin-top: 15px;
+            font-size: 14px;
+            font-family: 'roboto-regular';
+            color: black;
+        }
+    }
+}

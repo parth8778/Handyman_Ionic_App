@@ -1,0 +1,18 @@
+
+ion-tab-bar {
+    ion-tab-button {
+        border-top: 2px solid transparent;
+        &.tab-selected {
+            border-top: 2px solid var(--ion-color-base);
+        }
+        ion-icon {
+            font-size: 20px;
+        }
+        ion-label {
+            margin-top: 4px;
+            font-size: 10px;
+            color: var(--ion-color-gray);
+            font-family: 'roboto-regular';
+        }
+    }
+}

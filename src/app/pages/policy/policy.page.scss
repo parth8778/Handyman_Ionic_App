@@ -1,0 +1,26 @@
+ion-header {
+    ion-toolbar {
+        --background: var(--ion-color-base);
+        color: var(--ion-color-white);
+        ion-title {
+            font-family: 'roboto-regular';
+        }
+     }   
+}
+
+ion-content {
+    .content {
+        .title {
+            color: var(--ion-color-base);
+            font-size: 18px;
+            font-family: 'roboto-bold';
+            margin-bottom: 16px;
+            margin-top: 16px;
+        }
+        .policy-content {
+            font-size: 14px;
+            font-family: 'roboto-regular';
+            color: var(--ion-color-gray);
+        }
+    }
+}

@@ -1,0 +1,44 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Contact Us
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+
+  <div class="banner-container">
+    <img
+      class="logo"
+      src="../../../assets/imgs/logo.png"
+    />
+    <h2 class="title">Handy<span>man</span></h2>
+  </div>
+
+  <form class="form-container" style="margin-top: 30px;">
+    <ion-item>
+      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-label position="stacked">Your name</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="call" slot="start"></ion-icon>
+      <ion-label position="stacked">Mobile number</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="mail" slot="start"></ion-icon>
+      <ion-label position="stacked">Your message</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" shape="round">Submit</ion-button>
+  </form>
+
+</ion-content>

@@ -1,0 +1,114 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Book now
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="util.navigateByURL('tabs/request', 'forward')">
+        <ion-icon name="checkmark-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+  <div class="provider-detail">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="https://stat1.bollywoodhungama.in/wp-content/uploads/2016/11/Parineeti-Chopra-01.jpg">
+      </ion-avatar>
+      <ion-label>
+        <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
+        <h3 class="services">
+          Tab. Wash Basin and sink Problem
+        </h3>
+      </ion-label>
+    </ion-item>
+
+    <div class="date-section">
+      <div class="date-container">
+        <p>Mon</p>
+        <div class="active date-box">
+          <h2>23</h2>
+        </div>
+      </div>
+      <div class="date-container">
+        <p>Tue</p>
+        <div class="date-box">
+          <h2>24</h2>
+        </div>
+      </div>
+      <div class="date-container">
+        <p>Wed</p>
+        <div class="date-box">
+          <h2>25</h2>
+        </div>
+      </div>
+      <div class="date-container">
+        <p>Thu</p>
+        <div class="date-box">
+          <h2>26</h2>
+        </div> 
+      </div>
+      <div class="date-container">
+        <p>Fri</p>
+        <div class="date-box">
+          <h2>27</h2>
+        </div>
+      </div>
+      <div class="date-container">
+        <p>Sat</p>
+        <div class="date-box">
+          <h2>28</h2>
+        </div>
+      </div>
+      <div class="date-container">
+        <p>Sun</p>
+        <div class="date-box">
+          <h2>29</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="booking-detail">
+    <ion-list>
+      <ion-item lines="inset">
+        <ion-label position="stacked">When</ion-label>
+        <ion-datetime displayFormat="h:mm a" placeholder=""></ion-datetime>
+      </ion-item>
+
+      <ion-item lines="inset">
+        <ion-label position="stacked">Where</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <div class="combined">
+        <ion-item lines="inset">
+          <ion-label position="stacked">House number</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+
+        <ion-item lines="inset">
+          <ion-label position="stacked">Society / Building</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-item lines="inset">
+        <ion-label position="stacked">Full address</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item lines="inset">
+        <ion-label position="stacked">Landmark</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

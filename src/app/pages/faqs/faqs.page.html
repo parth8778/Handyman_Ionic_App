@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      FAQ's & Terms
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list mode="ios">
+    <ion-item (click)="openQuestion(faq)" *ngFor="let faq of faqs" lines="none">
+      <ion-label>
+        <h2>{{faq.question}}</h2>
+        <p *ngIf="faq.open">{{faq.answer}}</p>
+      </ion-label>
+      <ion-icon [name]="faq.open ? 'chevron-up' : 'chevron-down'"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

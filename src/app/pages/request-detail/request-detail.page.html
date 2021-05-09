@@ -1,0 +1,74 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Job Detail
+    </ion-title>
+    <ion-buttons slot="start"> 
+      <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+
+  <ion-item lines="full">
+    <ion-avatar class="slot-up" slot="start">
+      <img src="../../../assets/imgs/profile1.png">
+    </ion-avatar>
+    <ion-label>
+      <ion-button class="customize-button" fill="clear" slot="end">
+        <ion-icon class="chat-box" name="chatbox-ellipses"></ion-icon>
+      </ion-button>
+
+      <h2 class="provider-name">Aliza Smith <span class="provider-occupation">| Plumber</span></h2>
+      <div class="item">
+        <h3 class="title">Job Task</h3>
+        <h2 class="text">Tab. Wash Basin and Sink Problem</h2>
+      </div>
+      <div class="item">
+        <h3 class="title">Booking date</h3>
+        <h2 class="text">20th Jan, 09:00</h2>
+      </div>
+      <div class="item">
+        <h3 class="title">Job fees</h3>
+        <h2 class="text">200 per hour</h2>
+      </div>
+      <div class="item">
+        <h3 class="title">Address</h3>
+        <h2 class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ad cum rerum neque dolorum nesciunt doloribus asperiores</h2>
+      </div>
+    </ion-label>
+    
+  </ion-item>
+
+  <div class="buttons">
+    <ion-button expand="full"><ion-icon name="close"></ion-icon> Cancel</ion-button>
+    <ion-button expand="full"><ion-icon name="refresh"></ion-icon> Reschedule</ion-button>
+  </div>
+
+  <!-- timeline -->
+
+  <h2 class="timeline-title">Job Status</h2>
+
+  <div class="line">
+    <div class="line-content">
+
+      <div class="content">
+        <h1>Accepted</h1>
+        <p>Accept order at 20th jan 7:00</p>
+      </div>
+
+      <div class="content">
+       <h1>Work started</h1>
+       <p>Work started at 20th jan 8:00</p>
+     </div>
+     
+     <div class="content">
+       <h1>Work completed</h1>
+       <p>Work completed at 20th jan 9:00</p>
+     </div>
+      
+    </div>
+  </div>
+
+</ion-content>

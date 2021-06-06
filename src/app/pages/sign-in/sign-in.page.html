@@ -6,7 +6,7 @@
     />
     <h2 class="title">Handy<span>man</span></h2>
   </div>
-
+ 
   <div class="ion-padding">
     <div class="info-text-container">
       <h2>Sign in or Sign up to continue</h2>
@@ -16,29 +16,31 @@
       <ion-item>
         <ion-icon name="mail-outline" slot="start"></ion-icon>
         <ion-label position="floating">Email</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="email" name="email" type="email"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
         <ion-label position="floating">Password</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="password" name="password" type="password"></ion-input>
       </ion-item>
 
-      <ion-button expand="block" shape="round" (click)="util.navigateByURL('tabs/categories', 'root')">Continue</ion-button>
+      <ion-button [disabled]="!email || !password" expand="block" shape="round" (click)="signIn()">Continue</ion-button>
     </form>
 
     <div class="separator">Or register with</div>
 
     <div class="social-buttons">
-      <ion-button shape="round" fill="outline">Seeker</ion-button>
-      <ion-button class="google" shape="round" fill="outline"
+      <ion-button (click)="util.navigateByURL('sign-up', 'forward')" shape="round" fill="outline">Seeker</ion-button>
+      <ion-button (click)="util.navigateByURL('provider-sign-up', 'forward')" class="google" shape="round" fill="outline"
         >Provider</ion-button
       >
     </div>
-
+  
     <div class="info-text-container">
-      <h2 class="small">Don't have an account <a (click)="util.navigateByURL('sign-up', 'forward')">Sign up</a></h2>
+      <h2 class="small">
+        By signing up, you are agree to our <a>privacy & policy</a>
+      </h2>
     </div>
   </div>
 </ion-content>

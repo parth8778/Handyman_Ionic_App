@@ -27,9 +27,21 @@
 
 // fonts
 @import "./theme/fonts.scss";
+@import "./theme/toaster.scss";
+// regular style toast
+@import '~ngx-toastr/toastr';
 
 * {
   font-size: 'roboto-regular';
+}
+
+.error {
+  font-size: 11px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+  font-family: 'roboto-bold';
+  color: var(--ion-color-error);
 }
 
 .form-container {
@@ -233,3 +245,15 @@
   border-radius: 50%;
 }
 /*# sourceMappingURL=main.css.map */
+
+.service-selection {
+  .select-text {
+    text-overflow: inherit !important;
+    white-space: normal !important; 
+  }
+}
+
+.select-text {
+  text-overflow: inherit !important;
+  white-space: normal !important; 
+}

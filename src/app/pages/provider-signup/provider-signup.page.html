@@ -8,6 +8,7 @@
 
 <ion-content class="ion-padding">
   <form [formGroup]="userForm" class="form-container">
+ 
     <ion-row>
       <ion-col size="4">
         <div class="img-container">
@@ -73,16 +74,10 @@
       <ion-label position="floating">Email</ion-label>
       <ion-input formControlName="email"></ion-input>
     </ion-item>
-    <span
-      class="error"
-      *ngIf="userForm?.get('email')?.hasError('required') && userForm?.get('email').touched"
-    >
+    <span class="error" *ngIf="userForm?.get('email')?.hasError('required') && userForm?.get('email').touched">
       Email is required
     </span>
-    <span
-      class="error"
-      *ngIf="userForm?.get('email')?.hasError('email') && userForm?.get('email').touched"
-    >
+    <span class="error" *ngIf="userForm?.get('email')?.hasError('email') && userForm?.get('email').touched">
       Please enter a valid Email Address
     </span>
 
@@ -91,22 +86,14 @@
       <ion-label position="floating">Contact Number</ion-label>
       <ion-input formControlName="contactNumber"></ion-input>
     </ion-item>
-    <span
-      class="error"
-      *ngIf="userForm?.get('contactNumber')?.hasError('required') && userForm?.get('contactNumber').touched"
-    >
+    <span class="error"
+      *ngIf="userForm?.get('contactNumber')?.hasError('required') && userForm?.get('contactNumber').touched">
       Contact number is required
     </span>
-    <span
-      class="error"
-      *ngIf="(userForm?.get('contactNumber')?.hasError('pattern') && userForm?.get('contactNumber').touched)"
-    >
+    <span class="error" *ngIf="(userForm?.get('contactNumber')?.hasError('pattern') && userForm?.get('contactNumber').touched)">
       Please enter a correct Mobile Number
     </span>
-    <span
-      class="error"
-      *ngIf="userForm?.get('contactNumber')?.hasError('minlength') && userForm?.get('contactNumber').touched"
-    >
+    <span class="error" *ngIf="userForm?.get('contactNumber')?.hasError('minlength') && userForm?.get('contactNumber').touched">
       Contact number must be at least 10 characters
     </span>
 
@@ -115,16 +102,10 @@
       <ion-label position="floating">Password</ion-label>
       <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
-    <span
-      class="error"
-      *ngIf="userForm?.get('password')?.hasError('required') && userForm?.get('password').touched"
-    >
+    <span class="error" *ngIf="userForm?.get('password')?.hasError('required') && userForm?.get('password').touched">
       Password is required
     </span>
-    <span
-      class="error"
-      *ngIf="userForm?.get('password')?.hasError('pattern') && userForm?.get('password').touched"
-    >
+    <span class="error" *ngIf="userForm?.get('password')?.hasError('pattern') && userForm?.get('password').touched">
       Password should contains at least one Uppercase, Lowercase, Special
       Character, Digit with a minimum length of 6-8 characters
     </span>
@@ -134,16 +115,12 @@
       <ion-label position="floating">Confirm Password</ion-label>
       <ion-input type="password" formControlName="confirmPassword"></ion-input>
     </ion-item>
-    <span
-      class="error"
-      *ngIf="userForm?.get('confirmPassword')?.hasError('required') && userForm?.get('confirmPassword').touched"
-    >
-      Password is required
+    <span class="error"
+      *ngIf="userForm?.get('confirmPassword')?.hasError('required') && userForm?.get('confirmPassword').touched">
+      Confirm Password is required
     </span>
-    <span
-      class="error"
-      *ngIf="userForm?.get('confirmPassword')?.hasError('notEquivalent') && userForm?.get('confirmPassword').touched"
-    >
+    <span class="error"
+      *ngIf="userForm?.get('confirmPassword')?.hasError('notEquivalent') && userForm?.get('confirmPassword').touched">
       Confirm Password doesn't matched
     </span>
 
@@ -188,19 +165,60 @@
     >
       City is required
     </span>
+    
+    <ion-item>
+      <ion-icon name="cash-outline" slot="start"></ion-icon>
+      <ion-label position="floating">Per hour</ion-label>
+      <ion-input type="number" formControlName="price"></ion-input>
+    </ion-item>
+    <span class="error"
+      *ngIf="userForm?.get('price')?.hasError('required') && userForm?.get('price').touched">
+      Price is required
+    </span>
 
-    <ion-button
-      [disabled]="userForm.invalid"
-      (click)="createAccount()"
-      expand="block"
-      shape="round"
-      >Continue</ion-button
-    >
+    <ion-item>
+      <ion-icon name="reader-outline" slot="start"></ion-icon>
+      <ion-label position="floating">Categories</ion-label>
+      <ion-select formControlName="selectedCategory" (ionChange)="getServices()" mode="ios">
+        <ion-select-option *ngFor="let category of categories" [value]="category.categoryId">
+          {{ category.categoryName }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <span class="error"
+    *ngIf="userForm?.get('selectedCategory')?.hasError('required') && userForm?.get('selectedCategory').touched">
+    Category is required
+  </span>
+
+    <ion-item>
+      <ion-icon name="receipt-outline" slot="start"></ion-icon>
+      <ion-label position="floating">Services</ion-label>
+      <ion-select formControlName="selectedServices" [disabled]="!userForm.value.selectedCategory" mode="ios" interface="action-sheet" class="service-selection" multiple="true">
+        <ion-select-option *ngFor="let service of services" [value]="service.serviceId"> 
+          {{ service.serviceName }} 
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <span class="error"
+    *ngIf="userForm?.get('selectedServices')?.hasError('required') && userForm?.get('selectedServices').touched">
+    Service is required
+  </span>
+
+    <ion-item>
+      <ion-icon name="document-text-outline" slot="start"></ion-icon>
+      <ion-label position="stacked">About</ion-label>
+      <ion-textarea formControlName="about" rows="3" cols="10"></ion-textarea>
+    </ion-item>
+    <span class="error" *ngIf="userForm?.get('about')?.hasError('required') && userForm?.get('about').touched">
+      About is required
+     </span>
+
+    <ion-button [disabled]="userForm.invalid" (click)="createAccount()" expand="block" shape="round">Continue</ion-button>
   </form>
 
   <div class="info-text-container">
     <h2 class="small">
       By signing up, you are agree to our <a>privacy & policy</a>
     </h2>
-  </div>
+  </div> 
 </ion-content>

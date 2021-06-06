@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -9,10 +10,17 @@ import { UtilService } from 'src/app/services/util.service';
 export class AccountPage implements OnInit {
 
   constructor(
-    public util: UtilService
+    public util: UtilService,
+    private firebaseAuth: AngularFireAuth
   ) { }
 
   ngOnInit() {
+  }
+
+  doSignOut() {
+    localStorage.clear();
+    this.firebaseAuth.signOut();
+    this.util.navigateByURL('/', 'root');
   }
 
 }

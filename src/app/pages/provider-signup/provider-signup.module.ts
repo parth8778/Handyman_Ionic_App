@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SignUpPageRoutingModule } from './sign-up-routing.module';
+import { ProviderSignupPageRoutingModule } from './provider-signup-routing.module';
 
-import { SignUpPage } from './sign-up.page';
+import { ProviderSignupPage } from './provider-signup.page';
 import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
@@ -15,9 +15,9 @@ import { IonicSelectableModule } from 'ionic-selectable';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    SignUpPageRoutingModule,
+    ProviderSignupPageRoutingModule,
     IonicSelectableModule
   ],
-  declarations: [SignUpPage]
+  declarations: [ProviderSignupPage]
 })
-export class SignUpPageModule {}
+export class ProviderSignupPageModule {}

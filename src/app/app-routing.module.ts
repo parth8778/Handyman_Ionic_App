@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./pages/sign-up/tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
     path: 'categories',
@@ -35,7 +35,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/request/request.module').then( m => m.RequestPageModule)
   },
   {
-    path: 'services',
+    path: 'services/:categoryId',
     loadChildren: () => import('./pages/services/services.module').then( m => m.ServicesPageModule)
   },
   {
@@ -77,6 +77,10 @@ const routes: Routes = [
   {
     path: 'contact-us',
     loadChildren: () => import('./pages/contact-us/contact-us.module').then( m => m.ContactUsPageModule)
+  },
+  {
+    path: 'provider-sign-up',
+    loadChildren: () => import('./pages/provider-signup/provider-signup.module').then( m => m.ProviderSignupPageModule)
   }
 ];
 @NgModule({

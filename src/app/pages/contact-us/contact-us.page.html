@@ -19,26 +19,53 @@
     <h2 class="title">Handy<span>man</span></h2>
   </div>
 
-  <form class="form-container" style="margin-top: 30px;">
+  <form [formGroup]="feedbackForm" class="form-container" style="margin-top: 30px;">
     <ion-item>
       <ion-icon name="person" slot="start"></ion-icon>
       <ion-label position="stacked">Your name</ion-label>
-      <ion-input></ion-input>
+      <ion-input formControlName="fullName"></ion-input>
     </ion-item>
+    <span class="error" *ngIf="feedbackForm?.get('fullName')?.hasError('required') && feedbackForm?.get('fullName').touched">
+      Name is required
+    </span>
+    <span class="error" *ngIf="feedbackForm?.get('fullName')?.hasError('minlength') && feedbackForm?.get('fullName').touched">
+      Name must be at least 3 characters
+    </span>
+    <span class="error" *ngIf="feedbackForm?.get('fullName')?.hasError('maxlength') && feedbackForm?.get('fullName').touched">
+      Name may not be greater than 30 characters
+    </span>
 
     <ion-item>
       <ion-icon name="call" slot="start"></ion-icon>
       <ion-label position="stacked">Mobile number</ion-label>
-      <ion-input></ion-input>
+      <ion-input formControlName="contactNumber"></ion-input>
     </ion-item>
+    <span class="error" *ngIf="feedbackForm?.get('contactNumber')?.hasError('required') && feedbackForm?.get('contactNumber').touched">
+      Mobile number is required
+    </span>
+    <span class="error" *ngIf="feedbackForm?.get('contactNumber')?.hasError('minlength') && feedbackForm?.get('contactNumber').touched">
+      Mobile number must be at least 3 characters
+    </span>
+    <span class="error" *ngIf="feedbackForm?.get('contactNumber')?.hasError('maxlength') && feedbackForm?.get('contactNumber').touched">
+      Mobile number may not be greater than 30 characters
+    </span>
 
     <ion-item>
       <ion-icon name="mail" slot="start"></ion-icon>
       <ion-label position="stacked">Your message</ion-label>
-      <ion-input></ion-input>
+      <ion-input formControlName="message"></ion-input>
     </ion-item>
+    <span class="error" *ngIf="feedbackForm?.get('message')?.hasError('required') && feedbackForm?.get('message').touched">
+      Message is required
+    </span>
+    <span class="error" *ngIf="feedbackForm?.get('message')?.hasError('minlength') && feedbackForm?.get('message').touched">
+      Message must be at least 10 characters
+    </span>
+    <span class="error" *ngIf="feedbackForm?.get('message')?.hasError('maxlength') && feedbackForm?.get('message').touched">
+      Message may not be greater than 110 characters
+    </span>
 
-    <ion-button expand="block" shape="round">Submit</ion-button>
+    <ion-button [disabled]="feedbackForm.invalid" (click)="submitFeedback()" expand="block" shape="round">Submit</ion-button>
   </form>
 
 </ion-content>

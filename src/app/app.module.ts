@@ -12,9 +12,16 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { UtilService } from './services/util.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 const PLUGINS = [
-  ToastrModule
+  ToastrModule.forRoot(), // ToastrModule added
+  NgxUiLoaderModule,
+  IonicSelectableModule
 ];
 
 const FIREBASE_MODULES = [
@@ -29,9 +36,11 @@ const FIREBASE_MODULES = [
   ],
   entryComponents: [],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
+    ReactiveFormsModule,
     NgZorroAntdMobileModule, 
     PickerViewModule,
     ...FIREBASE_MODULES,
@@ -39,7 +48,8 @@ const FIREBASE_MODULES = [
   ],
   providers: [
     LottieSplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    UtilService
   ],
   bootstrap: [AppComponent],
 })

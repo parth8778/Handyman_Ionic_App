@@ -1,21 +1,18 @@
-
-.info-text-container { 
+.info-text-container {
     h2 {
         font-size: 17px;
         margin: 20px 0 0 ;
         text-align: center;
-        font-family: 'roboto-regular';
+        font-family: var(--ion-base-font);
         color: var(--ion-color-gray);
         &.small {
-            font-size: 14px;
+            font-size: 12px;
         }
     }
     a {
         text-decoration: underline;
     }
 }
-
-
 
 .separator {
     margin-top: 30px;

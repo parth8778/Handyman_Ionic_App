@@ -19,13 +19,12 @@
     <ion-icon slot="end" name="create-outline"></ion-icon>
   </ion-item>
 
-
   <ion-list mode="ios">
-    <ion-item lines="full">
+    <!-- <ion-item lines="full">
       <ion-icon class="start-icon" slot="start" name="location-sharp"></ion-icon>
       <ion-label>Manage Address</ion-label>
       <ion-icon class="end-icon" slot="end" name="chevron-forward-outline"></ion-icon>
-    </ion-item>
+    </ion-item> -->
     <ion-item (click)="util.navigateByURL('contact-us', 'forward')" lines="full">
       <ion-icon class="start-icon" slot="start" name="mail-sharp"></ion-icon>
       <ion-label>Contact Us</ion-label>
@@ -46,16 +45,16 @@
       <ion-label>FAQs & Terms</ion-label>
       <ion-icon class="end-icon" slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
-    <ion-item class="last-child" (click)="util.navigateByURL('language', 'forward')" lines="full">
+    <!-- <ion-item class="last-child" (click)="util.navigateByURL('language', 'forward')" lines="full">
       <ion-icon class="start-icon" slot="start" name="earth"></ion-icon>
       <ion-label>Change Language</ion-label>
       <ion-icon class="end-icon" slot="end" name="chevron-forward-outline"></ion-icon>
-    </ion-item>
+    </ion-item> -->
     <!-- logout -->
     <!-- <ion-item class="logout-item" lines="full">
       <ion-label class="ion-text-center">Sign out</ion-label>
     </ion-item> -->
-    <ion-button class="sign-out-btn" expand="full" fill="clear">Sign out</ion-button>
+    <ion-button (click)="doSignOut()" class="sign-out-btn" expand="full" fill="clear">Sign out</ion-button>
   </ion-list>
 
 </ion-content>

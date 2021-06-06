@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { CategoriesPageRoutingModule } from './categories-routing.module';
 
 import { CategoriesPage } from './categories.page';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    FilterPipeModule,
     CategoriesPageRoutingModule
   ],
   declarations: [CategoriesPage]

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from "@angular/fire/storage";
-import { finalize } from "rxjs/operators";
+import { finalize, map } from "rxjs/operators";
 import { Observable } from "rxjs";
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,13 +15,32 @@ export class FirebaseService {
   ) { }
 
   addDataToCollection(endpoint, data) {
+    const { docId, ...rest } = data;
+    const request = {
+      ...rest,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    return this.fireStore.collection(endpoint).doc(docId).set(request);
+  }
+
+  addOrUpdateCollection(collection, data, docId) {
     const request = {
       ...data,
       createdAt: new Date(),
       updatedAt: new Date()
     };
-    console.log('request is here', request);
-    return this.fireStore.collection(endpoint).add(request);
+    return this.fireStore.collection(collection).doc(docId).set(request);
+  }
+
+  getCollectionWithId(ref) {
+   return this.fireStore.collection(ref).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data: any = a.payload.doc.data();
+        const id: any = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    )
   }
 
   addDataToCollectionWithId(endpoint, data) {
@@ -32,6 +50,14 @@ export class FirebaseService {
   getDataFromCollection(endpoint) {
     return this.fireStore.collection(endpoint).valueChanges();
   }
+
+  removeDataFromCollection(endpoint, docId) {
+    return this.fireStore.collection(endpoint).doc(docId).delete();
+  }
+
+  getCollectionWithDocId(endpoint, docId) {
+    return this.fireStore.collection(endpoint).doc(docId).valueChanges();
+   }
 
   uploadFile(uploadPath,event) {
     var n = Date.now();

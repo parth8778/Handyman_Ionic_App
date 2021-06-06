@@ -6,92 +6,20 @@
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon name="search-sharp"></ion-icon>
-      </ion-button>
+      </ion-button> 
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
   <ion-list (click)="util.navigateByURL('provider-detail', 'forward')">
-    <ion-item  lines="full">
+    <ion-item *ngFor="let provider of providers" lines="full">
       <ion-avatar slot="start"> 
         <img src="../../../assets/imgs/profile1.png">
       </ion-avatar>
       <ion-label>
-        <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-        <h3 class="hourly-rate">₹ 200 / per month</h3>
-      </ion-label>
-      <div class="ion-text-right" slot="end">
-        <h2 class="rating">
-          4.1 <ion-icon name="star-sharp"></ion-icon> <span class="counts">(202)</span>
-        </h2>
-        <h3 class="distance-text">
-          2.0 Km away
-        </h3>
-      </div>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar slot="start">
-        <img src="../../../assets/imgs/profile2.png">
-      </ion-avatar>
-      <ion-label>
-        <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-        <h3 class="hourly-rate">₹ 200 / per month</h3>
-      </ion-label>
-      <div class="ion-text-right" slot="end">
-        <h2 class="rating">
-          4.1 <ion-icon name="star-sharp"></ion-icon> <span class="counts">(202)</span>
-        </h2>
-        <h3 class="distance-text">
-          2.0 Km away
-        </h3>
-      </div>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar slot="start">
-        <img src="../../../assets/imgs/profile3.png">
-      </ion-avatar>
-      <ion-label>
-        <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-        <h3 class="hourly-rate">₹ 200 / per month</h3>
-      </ion-label>
-      <div class="ion-text-right" slot="end">
-        <h2 class="rating">
-          4.1 <ion-icon name="star-sharp"></ion-icon> <span class="counts">(202)</span>
-        </h2>
-        <h3 class="distance-text">
-          2.0 Km away
-        </h3>
-      </div>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar slot="start">
-        <img src="../../../assets/imgs/profile4.png">
-      </ion-avatar>
-      <ion-label>
-        <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-        <h3 class="hourly-rate">₹ 200 / per month</h3>
-      </ion-label>
-      <div class="ion-text-right" slot="end">
-        <h2 class="rating">
-          4.1 <ion-icon name="star-sharp"></ion-icon> <span class="counts">(202)</span>
-        </h2>
-        <h3 class="distance-text">
-          2.0 Km away
-        </h3>
-      </div>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar slot="start">
-        <img src="../../../assets/imgs/profile5.png">
-      </ion-avatar>
-      <ion-label>
-        <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-        <h3 class="hourly-rate">₹ 200 / per month</h3>
+        <h2 class="username">{{ provider.firstName +' '+ provider.lastName }} <span class="occupation">| Plumber</span></h2>
+        <h3 class="hourly-rate">₹ {{ provider.price }} / per hour</h3>
       </ion-label>
       <div class="ion-text-right" slot="end">
         <h2 class="rating">

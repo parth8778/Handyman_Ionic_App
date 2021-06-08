@@ -12,9 +12,9 @@
       <ion-col size="4">
         <div class="img-container">
           <ion-avatar slot="start">
-            <img src="../../../assets/imgs/profile5.png" />
+            <img [src]="previewProfileImage" />
           </ion-avatar>
-          <ion-button type="clear" class="edit-container">
+          <ion-button (click)="presentPhotoUploadActionSheet()" type="clear" class="edit-container">
             <ion-icon name="create-outline"></ion-icon>          
           </ion-button>
         </div>

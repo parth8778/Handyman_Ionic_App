@@ -10,11 +10,11 @@
 
   <ion-item class="personal-detail" lines="full">
     <ion-avatar slot="start">
-      <img src="../../../assets/imgs/profile5.png">
+      <img [src]="userData && userData.image ? userData.image : 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Arh-avatar.jpg'">
     </ion-avatar>
     <ion-label> 
-      <h2 class="username">Aliza Smith</h2>
-      <h3 class="contact-number">+9100000000</h3>
+      <h2 class="username"> {{ userData?.firstName +' '+ userData?.lastName }} </h2>
+      <h3 class="contact-number"> {{ userData?.contactNumber }} </h3>
     </ion-label>
     <ion-icon slot="end" name="create-outline"></ion-icon>
   </ion-item>

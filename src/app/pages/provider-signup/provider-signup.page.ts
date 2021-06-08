@@ -6,9 +6,14 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilService } from 'src/app/services/util.service';
 import { RolesEnum } from 'src/app/types/users';
 import messages from 'src/app/messages/messages';
-import csc from 'country-state-city'
+import csc from 'country-state-city';
 import { ICountry, ICity } from 'country-state-city';
-
+import { ActionSheetController } from '@ionic/angular';
+import { Camera } from '@ionic-native/camera/ngx';
+enum ImagePickerOptions {
+  CAMERA = 'CAMERA',
+  GALLERY = 'GALLERY',
+}
 @Component({
   selector: 'app-provider-signup',
   templateUrl: './provider-signup.page.html',
@@ -20,13 +25,18 @@ export class ProviderSignupPage implements OnInit {
   services = [];
   allCountries: ICountry[];
   allCities: ICity[];
+  previewProfileImage: string;
+  defaultImage =
+    'https://upload.wikimedia.org/wikipedia/commons/a/a0/Arh-avatar.jpg';
 
   constructor(
     private firebaseAuth: AngularFireAuth,
     private firebaseService: FirebaseService,
     private builder: FormBuilder,
     private util: UtilService,
-    private fireStore: AngularFirestore
+    private fireStore: AngularFirestore,
+    private camera: Camera,
+    private actionSheetController: ActionSheetController
   ) {
     this.initForm();
   }
@@ -58,7 +68,7 @@ export class ProviderSignupPage implements OnInit {
       const { value } = event;
       this.allCities = csc.getCitiesOfCountry(value.isoCode) as ICity[];
       this.userForm.patchValue({
-        city: ''       
+        city: '',
       });
     }
   }
@@ -128,12 +138,15 @@ export class ProviderSignupPage implements OnInit {
         selectedCategory: ['', Validators.required],
         selectedServices: ['', Validators.required],
         country: ['', Validators.required],
-        city: ['', Validators.required]
+        city: ['', Validators.required],
+        image: [this.defaultImage],
       },
       {
         validator: this.checkIfMatchingPasswords('password', 'confirmPassword'),
       }
     );
+
+    this.previewProfileImage = this.defaultImage;
   }
 
   checkIfMatchingPasswords(
@@ -151,6 +164,96 @@ export class ProviderSignupPage implements OnInit {
     };
   }
 
+  uploadImageToStorage(fileUri) {
+    try {
+      this.util.startLoader();
+      const filePath = `bucket/${Date.now()}`;
+      const uploadTask = this.firebaseService.storage
+        .ref(filePath)
+        .putString(fileUri, 'base64', { contentType: 'image/jpg' });
+
+      uploadTask
+        .then((uploadTaskResponse) => {
+          uploadTaskResponse.ref.getDownloadURL().then(
+            (downloadURL) => {
+              this.userForm.patchValue({
+                image: downloadURL || this.defaultImage,
+              });
+              this.previewProfileImage = downloadURL || this.defaultImage;
+            },
+            (downloadURLError) => {
+              console.log('downloadURLError: ', downloadURLError);
+            }
+          );
+        })
+        .catch((uploadTaskError) => {
+          console.log('uploadTaskError: ', uploadTaskError);
+        });
+    } catch (Error) {
+      console.log('Error: ', Error);
+      this.util.stopLoader();
+    }
+  }
+
+  async presentPhotoUploadActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Pick one of the option',
+      buttons: [
+        {
+          text: 'Gallery',
+          icon: 'images',
+          handler: () => {
+            this.selectImageToUpload(ImagePickerOptions.GALLERY);
+            console.log('Delete clicked');
+          },
+        },
+        {
+          text: 'Camera',
+          icon: 'camera',
+          handler: () => {
+            this.selectImageToUpload(ImagePickerOptions.CAMERA);
+            console.log('Share clicked');
+          },
+        },
+        {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          },
+        },
+      ],
+    });
+    await actionSheet.present();
+
+    const { role } = await actionSheet.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
+  selectImageToUpload(option) {
+    let cameraOptions = {};
+
+    if (option === ImagePickerOptions.CAMERA) {
+      cameraOptions = {
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        correctOrientation: true,
+      };
+    } else {
+      cameraOptions = {
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        correctOrientation: true,
+      };
+    }
+
+    this.camera.getPicture(cameraOptions).then((fileUri) => {
+      this.uploadImageToStorage(fileUri);
+    });
+  }
+
   createAccount() {
     if (this.userForm.valid) {
       this.util.startLoader();
@@ -165,7 +268,7 @@ export class ProviderSignupPage implements OnInit {
                 ...userForm,
                 id: uId,
                 role: RolesEnum.PROVIDER,
-                status: true
+                status: true,
               };
               this.firebaseService
                 .addOrUpdateCollection('users', request, uId)

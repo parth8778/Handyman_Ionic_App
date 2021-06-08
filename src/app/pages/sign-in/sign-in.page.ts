@@ -33,10 +33,6 @@ export class SignInPage implements OnInit {
             messages.loginInSuccess
           );
         }
-        this.util.showErrorToast(
-          messages.errorTitle,
-          messages.somethingWentWrong
-        );
       })
       .catch((err) => {
         this.util.showErrorToast(messages.errorTitle, err.message);

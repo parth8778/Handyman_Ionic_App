@@ -17,6 +17,7 @@ import { UtilService } from './services/util.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicSelectableModule } from 'ionic-selectable';
+import { Camera } from '@ionic-native/camera/ngx';
 
 const PLUGINS = [
   ToastrModule.forRoot(), // ToastrModule added
@@ -29,6 +30,11 @@ const FIREBASE_MODULES = [
   AngularFireAnalyticsModule,
   AngularFirestoreModule
 ];
+
+const IONIC_NATIVE_PLUGINS = [
+  Camera
+];
+
 
 @NgModule({
   declarations: [
@@ -49,7 +55,8 @@ const FIREBASE_MODULES = [
   providers: [
     LottieSplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    UtilService
+    UtilService,
+    ...IONIC_NATIVE_PLUGINS
   ],
   bootstrap: [AppComponent],
 })

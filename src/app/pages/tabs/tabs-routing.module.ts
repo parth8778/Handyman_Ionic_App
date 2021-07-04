@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../chat/chat.module').then(m => m.ChatPageModule)
       },
       {
+        path: 'reviews',
+        loadChildren: () => import('../reviews/reviews.module').then(m => m.ReviewsPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/categories',
         pathMatch: 'full'

@@ -1,49 +1,114 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>
-      Job Detail
-    </ion-title>
-    <ion-buttons slot="start"> 
-      <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    <ion-title> Job Detail </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/"
+        icon="chevron-back-outline"
+      ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> 
-
+<ion-content>
   <ion-item lines="full">
     <ion-avatar class="slot-up" slot="start">
-      <img src="../../../assets/imgs/profile1.png">
+      <img
+        [src]="requestDetails?.providerDetails?.image ? requestDetails?.providerDetails?.image : '../../../assets/imgs/profile1.png'"
+      />
     </ion-avatar>
     <ion-label>
       <ion-button class="customize-button" fill="clear" slot="end">
         <ion-icon class="chat-box" name="chatbox-ellipses"></ion-icon>
       </ion-button>
 
-      <h2 class="provider-name">Aliza Smith <span class="provider-occupation">| Plumber</span></h2>
+      <h2 class="provider-name">
+        {{requestDetails?.providerDetails?.firstName +' '+
+        requestDetails?.providerDetails?.lastName}}
+        <span class="provider-occupation">| Plumber</span>
+      </h2>
       <div class="item">
         <h3 class="title">Job Task</h3>
-        <h2 class="text">Tab. Wash Basin and Sink Problem</h2>
+        <h2 class="text">
+          <span
+            *ngFor="let service of requestDetails?.selectedServices; let last = last"
+          >
+            {{service.serviceName}} <span *ngIf="!last">,</span>
+          </span>
+        </h2>
       </div>
       <div class="item">
         <h3 class="title">Booking date</h3>
-        <h2 class="text">20th Jan, 09:00</h2>
+        <h2 class="text">
+          {{requestDetails?.bookingDate | date:'dd MMM'}},
+          {{requestDetails?.bookingDate | date:'h:mm a'}}
+        </h2>
       </div>
       <div class="item">
         <h3 class="title">Job fees</h3>
-        <h2 class="text">200 per hour</h2>
+        <h2 class="text">
+          ₹ {{requestDetails?.providerDetails?.price}} per hour
+        </h2>
       </div>
       <div class="item">
         <h3 class="title">Address</h3>
-        <h2 class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ad cum rerum neque dolorum nesciunt doloribus asperiores</h2>
+        <h2 class="text">
+          {{requestDetails?.location}}, {{requestDetails?.houseNumber}},
+          {{requestDetails?.landmark}}, {{requestDetails?.fullAddress}}
+        </h2>
       </div>
     </ion-label>
-    
   </ion-item>
 
   <div class="buttons">
-    <ion-button expand="full"><ion-icon name="close"></ion-icon> Cancel</ion-button>
-    <ion-button expand="full"><ion-icon name="refresh"></ion-icon> Reschedule</ion-button>
+    <ng-container *ngIf="activatedRole === RolesEnum.PROVIDER">
+      <ng-container
+        *ngIf="requestDetails?.bookingStatus === JobStatusEnum.PENDING"
+      >
+        <ion-button
+          (click)="changeJobStatus(JobStatusEnum.ACCEPTED)"
+          expand="full"
+          ><ion-icon name="checkmark-outline"></ion-icon> Accept</ion-button
+        >
+        <ion-button
+          (click)="changeJobStatus(JobStatusEnum.CANCEL)"
+          expand="full"
+          ><ion-icon name="close-outline"></ion-icon> Reject</ion-button
+        >
+      </ng-container>
+
+      <ng-container
+        *ngIf="requestDetails?.bookingStatus === JobStatusEnum.ACCEPTED"
+      >
+        <ion-button
+          (click)="changeJobStatus(JobStatusEnum.STARTED)"
+          expand="full"
+          ><ion-icon name="build-outline"></ion-icon> Job Start</ion-button
+        >
+      </ng-container>
+
+      <ng-container
+        *ngIf="requestDetails?.bookingStatus === JobStatusEnum.STARTED"
+      >
+        <ion-button
+          (click)="changeJobStatus(JobStatusEnum.COMPLETED)"
+          expand="full"
+          ><ion-icon name="checkmark-done-outline"></ion-icon> Job
+          Complete</ion-button
+        >
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="activatedRole === RolesEnum.USER">
+      <ng-container
+        *ngIf="requestDetails?.bookingStatus === JobStatusEnum.COMPLETED && !requestDetails?.ratingStatus"
+      >
+        <ion-button (click)="doRating()" expand="full"
+          ><ion-icon name="star-half-outline"></ion-icon> Give
+          rating</ion-button
+        >
+      </ng-container>
+    </ng-container>
   </div>
 
   <!-- timeline -->
@@ -52,23 +117,50 @@
 
   <div class="line">
     <div class="line-content">
-
-      <div class="content">
-        <h1>Accepted</h1>
-        <p>Accept order at 20th jan 7:00</p>
+      <div
+        [class.active]="requestDetails?.bookingStatus >= JobStatusEnum.PENDING"
+        class="content"
+      >
+        <h1>Created</h1>
+        <p>
+          Created order at {{requestDetails?.timelineDates?.jobCreatedAt |
+          date:'dd MMM h:mm a'}}
+        </p>
       </div>
 
-      <div class="content">
-       <h1>Work started</h1>
-       <p>Work started at 20th jan 8:00</p>
-     </div>
-     
-     <div class="content">
-       <h1>Work completed</h1>
-       <p>Work completed at 20th jan 9:00</p>
-     </div>
-      
+      <div
+        [class.active]="requestDetails?.bookingStatus >= JobStatusEnum.ACCEPTED"
+        class="content"
+      >
+        <h1>Accepted</h1>
+        <p>
+          Accept order at {{requestDetails?.timelineDates?.jobAcceptedAt |
+          date:'dd MMM h:mm a'}}
+        </p>
+      </div>
+
+      <div
+        [class.active]="requestDetails?.bookingStatus >= JobStatusEnum.STARTED"
+        class="content"
+      >
+        <h1>Work started</h1>
+        <p>
+          Work started at {{requestDetails?.timelineDates?.jobStartedAt |
+          date:'dd MMM h:mm a'}}
+        </p>
+      </div>
+
+      <div
+        [class.active]="requestDetails?.bookingStatus >= JobStatusEnum.COMPLETED"
+        class="content"
+      >
+        <h1>Work completed</h1>
+        <p>
+          Work completed at {{requestDetails?.timelineDates?.jobCompletedAt |
+          date:'dd MMM h:mm a'}}
+        </p>
+      </div>
     </div>
   </div>
-
 </ion-content>
+  

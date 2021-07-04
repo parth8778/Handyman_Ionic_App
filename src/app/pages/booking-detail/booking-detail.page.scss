@@ -71,6 +71,10 @@ ion-content {
     }
     .booking-detail {
         ion-list {
+            .custom-error-style {
+                margin: 0 17px;
+                margin-top: 5px;
+            }
             ion-item {
                 --padding-end: 16px;
                 ion-label {

@@ -42,10 +42,10 @@ export class ServicesPage implements OnInit {
           if (res) {
             this.services = res;
           }
-          this.util.startLoader();
+          this.util.stopLoader();
         },
         (err) => {
-          this.util.startLoader();
+          this.util.stopLoader();
           this.util.showErrorToast(messages.errorTitle, messages.somethingWentWrong);
           console.log('err: ', err);
         }

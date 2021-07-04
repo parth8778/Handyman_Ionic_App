@@ -11,7 +11,13 @@ const messages = {
     'updateAboutUsSuccess': 'About Us has been updated...',
     'updatePolicySuccess': 'Policy has been updated...',
     'serviceMustBeRequired': 'Service has been required...',
-    'addFeedbackSuccess': 'Feedback has been added...'
+    'addFeedbackSuccess': 'Feedback has been added...',
+    'jobStatusChangedSuccess': 'Job status has been updated...',
+    'bookingHasBeenSuccess': 'Booking has been successfully...',
+    'ratingSuccess': 'Rating has been submitted successfully...',
+    'profileUpdateSuccess': 'Profile updated successfully...',
+    'planSuccess': 'Plan has been purchased successfully...',
+    'planExpired': 'Plan has been expired...',
  };
  
  export default messages;

@@ -21,7 +21,7 @@ ion-content {
                 height: 120px;
                 width: 120px;
                 border-radius: 50%;
-                object-fit: contain;
+                object-fit: cover;
                 margin-top: -44px;
             }
             .provider-name {
@@ -65,10 +65,12 @@ ion-content {
                 font-family: 'roboto-regular';
                 --box-shadow: none;
                 --border-radius: 0px;
-                &:last-child {
-                    color: var(--ion-color-base);
-                    --background: white;
-                }
+                color: var(--ion-color-base);
+                --background: white;
+                // &:last-child {
+                //     color: var(--ion-color-base);
+                //     --background: white;
+                // }
             }
         }
     }

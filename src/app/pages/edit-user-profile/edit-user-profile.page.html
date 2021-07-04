@@ -1,0 +1,175 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title> Edit Profile </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/"
+        icon="chevron-back-outline"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+ 
+  <form [formGroup]="userForm" class="form-container">
+    <ion-row>
+      <ion-col size="4">
+        <div class="img-container">
+          <ion-avatar slot="start">
+            <img [src]="previewProfileImage" />
+          </ion-avatar>
+          <ion-button (click)="presentPhotoUploadActionSheet()" type="clear" class="edit-container">
+            <ion-icon name="create-outline"></ion-icon>          
+          </ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="8">
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input formControlName="firstName"></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="userForm?.get('firstName')?.hasError('required') && userForm?.get('firstName').touched"
+        >
+          First name is required
+        </span>
+        <span
+          class="error"
+          *ngIf="userForm?.get('firstName')?.hasError('minlength') && userForm?.get('firstName').touched"
+        >
+          First name must be at least 3 characters
+        </span>
+        <span
+          class="error"
+          *ngIf="userForm?.get('firstName')?.hasError('maxlength') && userForm?.get('firstName').touched"
+        >
+          First name may not be greater than 30 characters
+        </span>
+
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input formControlName="lastName"></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="userForm?.get('lastName')?.hasError('required') && userForm?.get('lastName').touched"
+        >
+          Last name is required
+        </span>
+        <span
+          class="error"
+          *ngIf="userForm?.get('lastName')?.hasError('minlength') && userForm?.get('lastName').touched"
+        >
+          Last name must be at least 3 characters
+        </span>
+        <span
+          class="error"
+          *ngIf="userForm?.get('lastName')?.hasError('maxlength') && userForm?.get('lastName').touched"
+        >
+          Last name may not be greater than 30 characters
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <span
+      class="error"
+      *ngIf="userForm?.get('email')?.hasError('required') && userForm?.get('email').touched"
+    >
+      Email is required
+    </span>
+    <span
+      class="error"
+      *ngIf="userForm?.get('email')?.hasError('email') && userForm?.get('email').touched"
+    >
+      Please enter a valid Email Address
+    </span>
+
+    <ion-item>
+      <ion-icon name="call-outline" slot="start"></ion-icon>
+      <ion-label position="floating">Contact Number</ion-label>
+      <ion-input formControlName="contactNumber"></ion-input>
+    </ion-item>
+    <span
+      class="error"
+      *ngIf="userForm?.get('contactNumber')?.hasError('required') && userForm?.get('contactNumber').touched"
+    >
+      Contact number is required
+    </span>
+    <span
+      class="error"
+      *ngIf="(userForm?.get('contactNumber')?.hasError('pattern') && userForm?.get('contactNumber').touched)"
+    >
+      Please enter a correct Mobile Number
+    </span>
+    <span
+      class="error"
+      *ngIf="userForm?.get('contactNumber')?.hasError('minlength') && userForm?.get('contactNumber').touched"
+    >
+      Contact number must be at least 10 characters
+    </span>
+
+    <ion-item>
+      <ion-icon name="location-outline" slot="start"></ion-icon>
+      <ion-label position="floating">Country</ion-label>
+      <ionic-selectable
+        formControlName="country"
+        [items]="allCountries"
+        itemValueField="name"
+        itemTextField="name"
+        [canSearch]="true"
+        [hasVirtualScroll]="true"
+        (onChange)="onCountryChange($event)"
+      >
+      </ionic-selectable>
+    </ion-item>
+    <span
+      class="error"
+      *ngIf="userForm?.get('country')?.hasError('required') && userForm?.get('country').touched"
+    >
+      Country is required
+    </span>
+
+    <ion-item>
+      <ion-icon name="location-outline" slot="start"></ion-icon>
+      <ion-label position="floating">City</ion-label>
+      <ionic-selectable
+        formControlName="city"
+        [items]="allCities"
+        itemValueField="name"
+        itemTextField="name"
+        [canSearch]="true"
+        [hasVirtualScroll]="true"
+        [disabled]="!userForm.value.country"
+      >
+      </ionic-selectable>
+    </ion-item>
+    <span
+      class="error"
+      *ngIf="userForm?.get('city')?.hasError('required') && userForm?.get('city').touched"
+    >
+      City is required
+    </span>
+
+    <ion-button
+      [disabled]="userForm.invalid"
+      (click)="updateProfile()"
+      expand="block"
+      shape="round"
+      >Update Profile</ion-button
+    >
+  </form>
+
+  <div class="info-text-container">
+    <h2 class="small">
+      By updating your profile, you are agree to our <a (click)="goToPolicy()">privacy & policy</a>
+    </h2>
+  </div>
+
+</ion-content>

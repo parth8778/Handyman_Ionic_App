@@ -1,0 +1,65 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title> Payment </ion-title>
+    <ion-buttons slot="end"> 
+      <ion-button (click)="doSignOut()">
+        Logout
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+
+  <div class="wrapper">
+    <input (change)="planId = 1" type="radio" name="slider" id="tab-1">
+    <input (change)="planId = 2" type="radio" name="slider" id="tab-2" checked>
+    <input (change)="planId = 3" type="radio" name="slider" id="tab-3">
+    <header>
+      <label for="tab-1" class="tab-1">Basic</label>
+      <label for="tab-2" class="tab-2">Standard</label>
+      <label for="tab-3" class="tab-3">Unlimited</label>
+      <div class="slider"></div>
+    </header>
+    <div class="card-area">
+      <div class="cards">
+        <div class="row row-1">
+          <div class="price-details">
+            <span class="price">500</span>
+            <p>Simple Plan</p>
+          </div>
+          <ul class="features">
+            <li><ion-icon name="checkmark-outline"></ion-icon><span>Unlimited requests until 6 month</span></li>
+            <li><ion-icon name="checkmark-outline"></ion-icon><span>Allow to edit category and service</span></li>
+            <li><ion-icon name="checkmark-outline"></ion-icon><span>Expired in one month</span></li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="price-details">
+            <span class="price">5,000</span>
+            <p>Professional Plan</p>
+          </div>
+          <ul class="features">
+            <li><ion-icon name="checkmark-outline"></ion-icon><span>Unlimited requests until 1 year</span></li>
+            <li><ion-icon name="checkmark-outline"></ion-icon><span>Allow to edit category and service</span></li>
+            <li><ion-icon name="checkmark-outline"></ion-icon><span>Expired in one year</span></li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="price-details">
+            <span class="price">50,000</span>
+            <p>Excellent Plan</p>
+          </div>
+          <ul class="features">
+            <li><ion-icon name="checkmark-outline"></ion-icon><span>Unlimited requests</span></li>
+            <li><ion-icon name="checkmark-outline"></ion-icon><span>Allow to edit category and service</span></li>
+            <li><ion-icon name="checkmark-outline"></ion-icon><span>Unlimited time no need to purchase this plan again</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <button (click)="choosePlan()">Choose plan</button>
+  </div>
+
+</ion-content>
+ 

@@ -218,6 +218,16 @@
 .line .content {
   position: relative;
   padding-left: 30px;
+  p {
+    display: none;
+  }
+  opacity: 0.5;
+  &.active {
+    opacity: 1;
+    p {
+      display: block;
+    } 
+  }
 }
 
 .line .content + .content {
@@ -256,4 +266,36 @@
 .select-text {
   text-overflow: inherit !important;
   white-space: normal !important; 
+}
+
+.no-data {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  ion-icon {
+    font-size: 63px;
+    margin-bottom: 9px;
+    color: #621fcf;
+  }
+  h2 {
+    text-align: center;
+    font-size: 17px;
+    font-family: "roboto-regular";
+  }
+}
+
+.my-custom-class {
+  height: 45%;
+  margin-top: 50%;
+  ion-modal {
+    height: 36%;
+    margin-top: 50%;
+  }
 }

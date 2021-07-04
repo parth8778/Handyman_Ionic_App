@@ -15,9 +15,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { UtilService } from './services/util.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { Camera } from '@ionic-native/camera/ngx';
+import { RatingModalComponent } from './components/rating-modal/rating-modal.component';
+import { CommonModule } from '@angular/common';
 
 const PLUGINS = [
   ToastrModule.forRoot(), // ToastrModule added
@@ -38,7 +40,8 @@ const IONIC_NATIVE_PLUGINS = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RatingModalComponent
   ],
   entryComponents: [],
   imports: [
@@ -49,6 +52,8 @@ const IONIC_NATIVE_PLUGINS = [
     ReactiveFormsModule,
     NgZorroAntdMobileModule, 
     PickerViewModule,
+    CommonModule,
+    FormsModule,
     ...FIREBASE_MODULES,
     ...PLUGINS
   ],

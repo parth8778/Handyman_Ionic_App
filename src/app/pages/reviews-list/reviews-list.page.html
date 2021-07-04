@@ -1,0 +1,46 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title> Reviews </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/"
+        icon="chevron-back-outline"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="reviews-section">
+    <div class="border" *ngFor="let review of reviews">
+      <ion-item class="user-review" lines="none">
+        <ion-avatar slot="start">
+          <img
+            [src]="review?.userDetails?.image ? review?.userDetails?.image : '../../../assets/imgs/profile2.png'"
+          />
+        </ion-avatar>
+        <ion-label>
+          <h2 class="username">
+            {{review?.userDetails?.firstName +' '+
+            review?.userDetails?.lastName}}
+          </h2>
+          <h3 class="rate">
+            {{review?.rating}} <ion-icon name="star-sharp"></ion-icon>
+          </h3>
+        </ion-label>
+        <ion-label class="ion-text-right" slot="end">
+          <h3 class="date">
+            {{review?.createdAt ? (review.createdAt.toDate() | date: 'MMM d, y')
+            : '21st Jan 18'}}
+          </h3>
+        </ion-label>
+      </ion-item>
+      <p class="text">{{ review?.review }}</p>
+    </div>
+  </ion-list>
+
+  <div class="no-data" *ngIf="!reviews || (reviews && reviews.length === 0)">
+    <ion-icon name="sad-outline"></ion-icon>
+    <h2>No data found</h2>
+  </div>
+</ion-content>

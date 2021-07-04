@@ -2,8 +2,11 @@
 ion-tab-bar {
     ion-tab-button {
         border-top: 2px solid transparent;
-        &.tab-selected {
+        &.active {
             border-top: 2px solid var(--ion-color-base);
+            ion-icon, ion-label {
+                color: var(--ion-color-base);
+            }
         }
         ion-icon {
             font-size: 20px;

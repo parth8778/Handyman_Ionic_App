@@ -1,25 +1,31 @@
-<ion-tabs> 
+<ion-tabs (ionTabsDidChange)="onTabChange()"> 
  
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="request">
+    <ion-tab-button [class.active]="activatedRoute === '/tabs/request'" tab="request">
       <ion-icon name="calendar"></ion-icon>
       <ion-label>REQUEST</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="categories">
+    <ion-tab-button [class.active]="activatedRoute === '/tabs/categories'" *ngIf="activatedRole === RolesEnum.USER" tab="categories">
       <ion-icon name="apps"></ion-icon>
       <ion-label>CATEGORIES</ion-label>
     </ion-tab-button>
+    
+    <ion-tab-button [class.active]="activatedRoute === '/tabs/reviews'" *ngIf="activatedRole === RolesEnum.PROVIDER" tab="reviews">
+      <ion-icon name="star"></ion-icon>
+      <ion-label>REVIEWS</ion-label>
+    </ion-tab-button>
 
-    <ion-tab-button tab="account">
+    <ion-tab-button [class.active]="activatedRoute === '/tabs/account'" tab="account">
       <ion-icon name="person"></ion-icon>
       <ion-label>ACCOUNT</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="chat">
+    <!-- <ion-tab-button [class.active]="activatedRoute === '/tabs/chat'" tab="chat">
       <ion-icon name="chatbubbles"></ion-icon>
       <ion-label>CHAT</ion-label>
-    </ion-tab-button>
+    </ion-tab-button> -->
+
   </ion-tab-bar>
 
 </ion-tabs>

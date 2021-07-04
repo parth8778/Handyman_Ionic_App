@@ -1,0 +1,38 @@
+<ion-content class="ion-padding">
+
+    <div (click)="closeModal()" class="close-icon">
+        <ion-icon name="close"></ion-icon>
+    </div>
+
+    <div class="star-container">
+        <ion-icon
+          (click)="selectedStar = 1"
+          [name]="selectedStar >= 1 ? 'star' : 'star-outline'"
+        ></ion-icon>
+        <ion-icon
+          (click)="selectedStar = 2"
+          [name]="selectedStar >= 2 ? 'star' : 'star-outline'"
+        ></ion-icon>
+        <ion-icon
+          (click)="selectedStar = 3"
+          [name]="selectedStar >= 3 ? 'star' : 'star-outline'"
+        ></ion-icon>
+        <ion-icon
+          (click)="selectedStar = 4"
+          [name]="selectedStar >= 4 ? 'star' : 'star-outline'"
+        ></ion-icon>
+        <ion-icon
+          (click)="selectedStar = 5"
+          [name]="selectedStar >= 5 ? 'star' : 'star-outline'"
+        ></ion-icon>
+      </div>
+      
+      <ion-item>
+        <ion-label position="floating">Review</ion-label>
+        <ion-textarea [(ngModel)]="review"></ion-textarea>
+      </ion-item>
+
+      <ion-button class="submit-review-button" (click)="submitReview()" expand="block" shape="round">Submit Review</ion-button>
+
+</ion-content>
+

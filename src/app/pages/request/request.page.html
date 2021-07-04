@@ -4,9 +4,9 @@
       Request
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button>
+      <!-- <ion-button>
         <ion-icon name="search-sharp"></ion-icon>
-      </ion-button> 
+      </ion-button>  -->
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
@@ -23,118 +23,58 @@
 
 <ion-content>
   <ng-container *ngIf="activeSegment === 'pending'">
-    <ion-list (click)="util.navigateByURL('request-detail', 'forward')">
-      <ion-item lines="full">
+    <ion-list>
+      <ion-item *ngFor="let req of pendingRequests" lines="full" (click)="goToRequestDetails(req)">
         <ion-avatar slot="start">
-          <img src="../../../assets/imgs/profile1.png">
+          <img [src]="req?.providerDetails?.image ? req?.providerDetails?.image : '../../../assets/imgs/profile1.png'">
         </ion-avatar>
         <ion-label>
-          <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-          <h3 class="hourly-rate">₹ 200 / per month</h3>
+          <h2 class="username">{{req?.providerDetails?.firstName +' '+ req?.providerDetails?.lastName}} <span class="occupation">| {{ req?.selectedCategory?.categoryName }}</span></h2>
+          <h3 class="hourly-rate">₹ {{req?.providerDetails?.price}} / per month</h3>
         </ion-label>
         <div class="ion-text-right" slot="end">
-          <h2 class="status pending">
-            Pending 
+          <h2 [class]="'status '+getJobStatusText(req?.bookingStatus)">
+            {{ getJobStatusText(req?.bookingStatus) | titlecase }}  
           </h2>
           <h3 class="booking-date">
-            21st jan 09:00 - 11:00 
-          </h3>
-        </div>
-      </ion-item>
-
-      <ion-item lines="full">
-        <ion-avatar slot="start">
-          <img src="../../../assets/imgs/profile2.png">
-        </ion-avatar>
-        <ion-label>
-          <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-          <h3 class="hourly-rate">₹ 200 / per month</h3>
-        </ion-label>
-        <div class="ion-text-right" slot="end">
-          <h2 class="status approved">
-            Approved
-          </h2>
-          <h3 class="booking-date">
-            21st jan 09:00 - 11:00 
-          </h3>
-        </div>
-      </ion-item>
-
-      <ion-item lines="full">
-        <ion-avatar slot="start">
-          <img src="../../../assets/imgs/profile3.png">
-        </ion-avatar>
-        <ion-label>
-          <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-          <h3 class="hourly-rate">₹ 200 / per month</h3>
-        </ion-label>
-        <div class="ion-text-right" slot="end">
-          <h2 class="status rejected">
-            Rejected
-          </h2>
-          <h3 class="booking-date">
-            21st jan 09:00 - 11:00 
+            <!-- 21st jan 09:00 - 11:00  -->
+            {{ req?.bookingDate | date: 'MMM d, y' }} - {{ req?.bookingTime | date: 'h:mm a' }}
           </h3>
         </div>
       </ion-item>
     </ion-list>
+
+    <div class="no-data" *ngIf="!pendingRequests || (pendingRequests && pendingRequests.length === 0)">
+      <ion-icon name="sad-outline"></ion-icon>
+      <h2>No data found</h2>
+    </div>
   </ng-container>
 
   <ng-container *ngIf="activeSegment === 'completed'">
     <ion-list>
-      <ion-item lines="full">
+      <ion-item *ngFor="let req of completedRequests" lines="full" (click)="goToRequestDetails(req)">
         <ion-avatar slot="start">
-          <img src="../../../assets/imgs/profile4.png">
+          <img [src]="req?.providerDetails?.image ? req?.providerDetails?.image : '../../../assets/imgs/profile1.png'">
         </ion-avatar>
         <ion-label>
-          <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-          <h3 class="hourly-rate">₹ 200 / per month</h3>
+          <h2 class="username">{{req?.providerDetails?.firstName +' '+ req?.providerDetails?.lastName}} <span class="occupation">| {{ req?.selectedCategory?.categoryName }}</span></h2>
+          <h3 class="hourly-rate">₹ {{req?.providerDetails?.price}} / per month</h3>
         </ion-label>
         <div class="ion-text-right" slot="end">
-          <h2 class="status pending">
-            Pending
+          <h2 [class]="'status '+getJobStatusText(req?.bookingStatus)">
+            {{ getJobStatusText(req?.bookingStatus) | titlecase }}  
           </h2>
           <h3 class="booking-date">
-            21st jan 09:00 - 11:00 
-          </h3>
-        </div>
-      </ion-item>
-
-      <ion-item lines="full">
-        <ion-avatar slot="start">
-          <img src="../../../assets/imgs/profile5.png">
-        </ion-avatar>
-        <ion-label>
-          <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-          <h3 class="hourly-rate">₹ 200 / per month</h3>
-        </ion-label>
-        <div class="ion-text-right" slot="end">
-          <h2 class="status pending">
-            Pending
-          </h2>
-          <h3 class="booking-date">
-            21st jan 09:00 - 11:00 
-          </h3>
-        </div>
-      </ion-item>
-
-      <ion-item lines="full">
-        <ion-avatar slot="start">
-          <img src="../../../assets/imgs/profile1.png">
-        </ion-avatar>
-        <ion-label>
-          <h2 class="username">Aliza Smith <span class="occupation">| Plumber</span></h2>
-          <h3 class="hourly-rate">₹ 200 / per month</h3>
-        </ion-label>
-        <div class="ion-text-right" slot="end">
-          <h2 class="status pending">
-            Pending
-          </h2>
-          <h3 class="booking-date">
-            21st jan 09:00 - 11:00 
+            <!-- 21st jan 09:00 - 11:00  -->
+            {{ req?.bookingDate | date: 'MMM d, y' }} - {{ req?.bookingTime | date: 'h:mm a' }}
           </h3>
         </div>
       </ion-item>
     </ion-list>
+
+    <div class="no-data" *ngIf="!completedRequests || (completedRequests && completedRequests.length === 0)">
+      <ion-icon name="sad-outline"></ion-icon>
+      <h2>No data found</h2>
+    </div>
   </ng-container>
 </ion-content>

@@ -1,123 +1,99 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-        <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+      <ion-back-button
+        defaultHref="/"
+        icon="chevron-back-outline"
+      ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
- 
-<ion-content>
 
-    <div class="overlay"></div>
-    <div class="personal-detail">
-      <div class="center-content">
-        <img class="provider-img" src="../../../assets/imgs/profile1.png">
-        <h2 class="provider-name">Alex John <span class="provider-occupation">| Plumber</span> </h2>
+<ion-content>
+  <div class="overlay"></div>
+  <div class="personal-detail">
+    <div class="center-content">
+      <img
+        class="provider-img"
+        [src]="bookingDetail?.providerDetails?.image ? bookingDetail?.providerDetails?.image : '../../../assets/imgs/profile1.png'"
+      />
+      <h2 class="provider-name">
+        {{bookingDetail?.providerDetails?.firstName +' '+
+        bookingDetail?.providerDetails?.lastName}}
+        <span class="provider-occupation"
+          >| {{bookingDetail?.selectedCategory?.categoryName}}</span
+        >
+      </h2>
+    </div>
+    <div class="other-details">
+      <div class="flex-col hourly-rate">
+        <h2 class="big-text">₹ {{bookingDetail?.providerDetails?.price}}</h2>
+        <p class="small-text">per hour</p>
       </div>
-      <div class="other-details">
-        <div class="flex-col hourly-rate">
-          <h2 class="big-text">₹ 250</h2>
-          <p class="small-text">per hour</p>
-        </div>  
-        <div class="flex-col hourly-rate">
-          <h2 class="big-text">2.3 Km</h2>
-          <p class="small-text">away from you</p>
-        </div>  
-      </div>
-      <div class="buttons">
-        <ion-button (click)="util.navigateByURL('booking-detail', 'forward')" expand="block">Book now</ion-button>
-        <ion-button (click)="util.navigateByURL('chat-detail', 'forward')" expand="block">Message</ion-button>
+      <div class="flex-col hourly-rate">
+        <h2 class="big-text">{{bookingDetail?.providerDetails?.city?.name}}</h2>
+        <p class="small-text">City</p>
       </div>
     </div>
- 
-    <ion-segment (ionChange)="segmentChanged($event)" [value]="activeSegment">
-      <ion-segment-button value="about">
-        <ion-label>About</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="reviews">
-        <ion-label>Reviews</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+    <div class="buttons">
+      <!-- <ion-button
+        (click)="util.navigateByURL('booking-detail', 'forward')"
+        expand="block"
+        >Book now</ion-button
+      > -->
+      <ion-button
+        (click)="util.navigateByURL('booking-detail', 'forward')"
+        expand="block"
+        >Book now</ion-button
+      >
+    </div>
+  </div>
 
-    <ng-container *ngIf="activeSegment === 'about'">
-      <div class="about-section">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt voluptas architecto nesciunt nam, dolorum mollitia, molestiae veniam consequatur, porro deleniti corrupti minus fuga perferendis nulla repudiandae. Velit doloremque porro sint!
-        </p>
-        <div class="service-section">
-          <h2 class="title">Services</h2>
-          <div class="service-container">
-            <h3 class="service">Tab, Wash Basin and Shink Problem</h3>
-            <h3 class="service">Tab, Wash Basin and Shink Problem</h3>
-            <h3 class="service">Tab, Wash Basin and Shink Problem</h3>
-            <h3 class="service">Tab, Wash Basin and Shink Problem</h3>
-          </div>
+  <ion-segment (ionChange)="segmentChanged($event)" [value]="activeSegment">
+    <ion-segment-button value="about">
+      <ion-label>About</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="reviews">
+      <ion-label>Reviews</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container *ngIf="activeSegment === 'about'">
+    <div class="about-section">
+      <p>{{ bookingDetail?.providerDetails?.about }}</p>
+      <div class="service-section">
+        <h2 class="title">Services</h2>
+        <div class="service-container">
+          <h3 class="service" *ngFor="let ser of services">{{ ser.serviceName }}</h3>
         </div>
       </div>
-    </ng-container>
+    </div>
+  </ng-container>
 
-    <ng-container *ngIf="activeSegment === 'reviews'">
-      <ion-list class="reviews-section">
-        <ng-container>
-          <ion-item class="user-review" lines="none">
-            <ion-avatar slot="start">
-              <img src="../../../assets/imgs/profile2.png">
-            </ion-avatar>
-            <ion-label>
-              <h2 class="username">Emol williams</h2>
-              <h3 class="rate">4.1 <ion-icon name="star-sharp"></ion-icon></h3>
-            </ion-label>
-            <ion-label class="ion-text-right" slot="end">
-              <h3 class="date">
-                21st Jan 18
-              </h3>
-            </ion-label>
-          </ion-item>
-          <p class="text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia deleniti reiciendis explicabo culpa atque consequuntur asperiores aliquam enim odio id porro animi vel saepe, excepturi fuga, fugit cumque eius unde.
-          </p>
-        </ng-container>
-        <ng-container>
-          <ion-item class="user-review" lines="none">
-            <ion-avatar slot="start">
-              <img src="../../../assets/imgs/profile3.png">
-            </ion-avatar>
-            <ion-label>
-              <h2 class="username">Emol williams</h2>
-              <h3 class="rate">4.1 <ion-icon name="star-sharp"></ion-icon></h3>
-            </ion-label>
-            <ion-label class="ion-text-right" slot="end">
-              <h3 class="date">
-                21st Jan 18
-              </h3>
-            </ion-label>
-          </ion-item>
-          <p class="text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia deleniti reiciendis explicabo culpa atque consequuntur asperiores aliquam enim odio id porro animi vel saepe, excepturi fuga, fugit cumque eius unde.
-          </p>
-        </ng-container>
-        <ng-container>
-          <ion-item class="user-review" lines="none">
-            <ion-avatar slot="start">
-              <img src="../../../assets/imgs/profile5.png">
-            </ion-avatar>
-            <ion-label>
-              <h2 class="username">Emol williams</h2>
-              <h3 class="rate">4.1 <ion-icon name="star-sharp"></ion-icon></h3>
-            </ion-label>
-            <ion-label class="ion-text-right" slot="end">
-              <h3 class="date">
-                21st Jan 18
-              </h3>
-            </ion-label>
-          </ion-item>
-          <p class="text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia deleniti reiciendis explicabo culpa atque consequuntur asperiores aliquam enim odio id porro animi vel saepe, excepturi fuga, fugit cumque eius unde.
-          </p>
-        </ng-container>
-      
-      </ion-list>
-    </ng-container>
-   
-  
+  <ng-container *ngIf="activeSegment === 'reviews'">
+    <ion-list class="reviews-section">
+      <ng-container *ngFor="let review of bookingDetail?.providerDetails?.reviews">
+        <ion-item class="user-review" lines="none">
+          <ion-avatar slot="start">
+            <img [src]="review?.userDetails?.image ? review?.userDetails?.image : '../../../assets/imgs/profile2.png'" />
+          </ion-avatar>
+          <ion-label>
+            <h2 class="username">{{review?.userDetails?.firstName +' '+ review?.userDetails?.lastName}}</h2>
+            <h3 class="rate">{{review?.rating}} <ion-icon name="star-sharp"></ion-icon></h3>
+          </ion-label>
+          <ion-label class="ion-text-right" slot="end">
+            <h3 class="date">{{review?.createdAt ? (review.createdAt.toDate() | date: 'MMM d, y') : '21st Jan 18'}}</h3>
+          </ion-label>
+        </ion-item>
+        <p class="text">
+          {{ review?.review }}
+        </p>
+      </ng-container>
+
+      <!-- <div class="no-data" *ngIf="!pendingRequests || (pendingRequests && pendingRequests.length === 0)">
+        <ion-icon name="sad-outline"></ion-icon>
+        <h2>No data found</h2>
+      </div> -->
+    </ion-list>
+  </ng-container>
 </ion-content>

@@ -177,6 +177,7 @@ export class SignUpPage implements OnInit {
           this.firebaseService.addOrUpdateCollection('users', request, uId).then(() => {
             this.util.stopLoader();
             localStorage.setItem('authenticatedId', uId);
+            localStorage.setItem("authenticatedUserRole", RolesEnum.USER);
             this.util.showSuccessToast(messages.successTitle, messages.registerSuccess);
             this.util.navigateByURL('tabs/categories', 'root');
           }).catch((err) => {
@@ -189,5 +190,9 @@ export class SignUpPage implements OnInit {
         this.util.stopLoader();
       });
     }
+  }
+
+  goToPolicy() {
+    this.util.navigateByURL('policy', 'forward')
   }
 }

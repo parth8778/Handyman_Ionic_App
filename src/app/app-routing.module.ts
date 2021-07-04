@@ -81,6 +81,26 @@ const routes: Routes = [
   {
     path: 'provider-sign-up',
     loadChildren: () => import('./pages/provider-signup/provider-signup.module').then( m => m.ProviderSignupPageModule)
+  },
+  {
+    path: 'reviews',
+    loadChildren: () => import('./pages/reviews/reviews.module').then( m => m.ReviewsPageModule)
+  },
+  {
+    path: 'reviews-list',
+    loadChildren: () => import('./pages/reviews-list/reviews-list.module').then( m => m.ReviewsListPageModule)
+  },
+  {
+    path: 'edit-provider-profile',
+    loadChildren: () => import('./pages/edit-provider-profile/edit-provider-profile.module').then( m => m.EditProviderProfilePageModule)
+  },
+  {
+    path: 'edit-user-profile',
+    loadChildren: () => import('./pages/edit-user-profile/edit-user-profile.module').then( m => m.EditUserProfilePageModule)
+  },
+  {
+    path: 'payment',
+    loadChildren: () => import('./pages/payment/payment.module').then( m => m.PaymentPageModule)
   }
 ];
 @NgModule({

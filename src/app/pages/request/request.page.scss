@@ -60,13 +60,13 @@ ion-content {
                 &.pending {
                     color: var(--ion-color-gray);
                 }
-                &.approved {
+                &.completed {
                     color: green;
                 }
                 &.rejected {
                     color: red;
                 }
-                &.in-process {
+                &.inprogress {
                     color: var(--ion-color-base);
                 }
             }

@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title> Reviews </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="review-container">
+    <p>Your Current Rating</p>
+    <h2>{{totalRatings}} <ion-icon name="star"></ion-icon></h2>
+  </div>
+
+  <div class="progressbar-container">
+    <div class="column">
+      <h2>5 <ion-icon name="star"></ion-icon></h2>
+      <div class="progressbar"></div>
+      <h2>{{statistics?.fiveStars?.count}}</h2>
+    </div>
+
+    <div class="column">
+      <h2>4 <ion-icon name="star"></ion-icon></h2>
+      <div class="progressbar">
+        <div
+          [ngStyle]="{width: statistics?.fourStars?.percentage+'%'}"
+          class="progress"
+        ></div>
+      </div>
+      <h2>{{statistics?.fourStars?.count}}</h2>
+    </div>
+
+    <div class="column">
+      <h2>3 <ion-icon name="star"></ion-icon></h2>
+      <div class="progressbar"></div>
+      <h2>{{statistics?.threeStars?.count}}</h2>
+    </div>
+
+    <div class="column">
+      <h2>2 <ion-icon name="star"></ion-icon></h2>
+      <div class="progressbar"></div>
+      <h2>{{statistics?.twoStars?.count}}</h2>
+    </div>
+
+    <div class="column">
+      <h2>1 <ion-icon name="star"></ion-icon></h2>
+      <div class="progressbar"></div>
+      <h2>{{statistics?.oneStars?.count}}</h2>
+    </div>
+
+    <ion-button (click)="goToReviewList()" expand="block" shape="round"
+      >Read All Reviews</ion-button
+    >
+  </div>
+</ion-content>

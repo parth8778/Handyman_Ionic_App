@@ -1,0 +1,46 @@
+
+ion-header {
+  ion-toolbar {
+      --background: var(--ion-color-base);
+      color: var(--ion-color-white);
+      ion-title {
+        font-family: 'roboto-regular';
+      }
+  }
+}
+
+  ion-content {
+    .reviews-section {
+      ion-avatar {
+        height: 65px;
+        width: 65px;
+        img {
+          object-fit: cover;
+        }
+      }
+        .user-review {
+            .username {
+                font-size: 18px;
+                font-family: 'roboto-medium';
+            }
+            .rate {
+                font-size: 14px;
+                font-family: 'roboto-medium';
+                color: var(--ion-color-base);
+            }
+        }
+        .date {
+            font-size: 14px;
+                font-family: 'roboto-medium'; 
+                color: var(--ion-color-gray);
+
+        }
+        .text {
+            padding: 0 18px;
+            font-family: 'roboto-regular';
+            text-align: justify;
+            margin-bottom: 16px;
+            font-size: 12px;
+        }
+    }
+  }

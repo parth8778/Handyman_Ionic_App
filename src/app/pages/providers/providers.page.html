@@ -3,34 +3,33 @@
     <ion-buttons slot="start">
         <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="search-sharp"></ion-icon>
-      </ion-button> 
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-list (click)="util.navigateByURL('provider-detail', 'forward')">
-    <ion-item *ngFor="let provider of providers" lines="full">
+  <ion-list>
+    <ion-item *ngFor="let provider of providers" lines="full" (click)="goToProviderDetail(provider)">
       <ion-avatar slot="start"> 
-        <img src="../../../assets/imgs/profile1.png">
+        <img [src]="provider.image ? provider.image : '../../../assets/imgs/profile1.png'">
       </ion-avatar>
       <ion-label>
-        <h2 class="username">{{ provider.firstName +' '+ provider.lastName }} <span class="occupation">| Plumber</span></h2>
-        <h3 class="hourly-rate">₹ {{ provider.price }} / per hour</h3>
+        <h2 class="username">{{ provider?.firstName +' '+ provider?.lastName }} <span class="occupation">| {{ provider?.categoryDetails?.categoryName }}</span></h2>
+        <h3 class="hourly-rate">₹ {{ provider?.price }} / per hour</h3>
       </ion-label>
       <div class="ion-text-right" slot="end">
         <h2 class="rating">
-          4.1 <ion-icon name="star-sharp"></ion-icon> <span class="counts">(202)</span>
+          {{ provider?.star || '0' }} <ion-icon name="star-sharp"></ion-icon> <span class="counts">({{provider?.totReviews}})</span>
         </h2>
         <h3 class="distance-text">
-          2.0 Km away
+          {{ provider?.city?.name }}
         </h3>
       </div>
     </ion-item>
-   
   </ion-list>
+
+  <div class="no-data" *ngIf="!providers || (providers && providers.length === 0)">
+    <ion-icon name="sad-outline"></ion-icon>
+    <h2>No data found</h2>
+  </div>
 </ion-content>
  

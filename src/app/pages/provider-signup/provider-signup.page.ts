@@ -46,6 +46,10 @@ export class ProviderSignupPage implements OnInit {
     this.getCategories();
   }
 
+  goToPolicy() {
+    this.util.navigateByURL('policy', 'forward')
+  }
+
   getCategories() {
     this.firebaseService.getDataFromCollection('categories').subscribe(
       (res) => {
@@ -268,18 +272,20 @@ export class ProviderSignupPage implements OnInit {
                 ...userForm,
                 id: uId,
                 role: RolesEnum.PROVIDER,
-                status: true,
+                status: true, 
+                payment: false
               };
               this.firebaseService
                 .addOrUpdateCollection('users', request, uId)
                 .then(() => {
                   this.util.stopLoader();
                   localStorage.setItem('authenticatedId', uId);
+                  localStorage.setItem("authenticatedUserRole", RolesEnum.PROVIDER);
                   this.util.showSuccessToast(
                     messages.successTitle,
                     messages.registerSuccess
                   );
-                  this.util.navigateByURL('tabs/categories', 'root');
+                  this.util.navigateByURL('/payment', 'root');
                 })
                 .catch((err) => {
                   this.util.showErrorToast(messages.errorTitle, err.message);
